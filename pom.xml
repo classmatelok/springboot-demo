@@ -60,6 +60,13 @@
 		  <version>6.0.0</version>
 	  </dependency>
 	  
+	  <!-- jedis(操作redis) -->
+	  <dependency>
+	  	<groupId>redis.clients</groupId>
+	  	<artifactId>jedis</artifactId>
+	  	<version>2.6.0</version>
+	  </dependency>
+	  
 	  <!-- lombok -->
 	  <dependency>
 	  	<groupId>org.projectlombok</groupId>
