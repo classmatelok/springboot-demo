@@ -19,10 +19,10 @@ public class TestRedisController {
 	
 	// 测试添加到redis
 	@RequestMapping(value="/add",method=RequestMethod.PUT)
-	public String addRedis(@RequestParam("code")String code) {
+	public void addRedis(@RequestParam("code")String code) {
 		Jedis jedis = JedisPoolTools.getJedis();
 		jedis.set("code", code);
-		return "success";
+		JedisPoolTools.closeJedis(jedis);
 	}
 	
 	// 测试根据ticket查询redis
@@ -30,6 +30,7 @@ public class TestRedisController {
 	public String selectRedis(@RequestParam("code")String code) {
 		Jedis jedis = JedisPoolTools.getJedis();
 		String result = jedis.get("code");
+		JedisPoolTools.closeJedis(jedis);
 		return result;
 	}
 }
