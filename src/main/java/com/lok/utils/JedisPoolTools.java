@@ -9,7 +9,6 @@ import redis.clients.jedis.JedisPoolConfig;
 
 /**
  * @Description 
- * @author Xu Jiale
  * @date 2017年9月13日
  */
 
