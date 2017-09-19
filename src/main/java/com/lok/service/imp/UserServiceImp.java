@@ -3,10 +3,8 @@ package com.lok.service.imp;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lok.dao.UserDao;
 import com.lok.domain.User;
 import com.lok.service.UserService;
 
