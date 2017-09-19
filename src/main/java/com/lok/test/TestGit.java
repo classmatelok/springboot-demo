@@ -8,5 +8,7 @@ package com.lok.test;
 
 public class TestGit {
 	//公司交
+	//公司改1st
 	//宿舍交1st测试
+	//合并结果
 }
