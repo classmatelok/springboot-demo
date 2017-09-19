@@ -6,9 +6,20 @@
 <script type="text/javascript" src="/resources/js/jquery/jquery-1.11.3.js"></script>
 <script type="text/javascript" src="/resources/js/jquery/jquery-migrate-1.2.1.js"></script>
 <script type="text/javascript" src="/resources/js/user.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/css/normal.css">
 </head>
 <body>
 	<input type="button" value="查询用户" id="selectUser"/>
-	<div id="show"></div>
+	<table border="1" class="dataTable">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>name</th>
+				<th>sex</th>
+				<th>age</th>
+			</tr>
+		</thead>
+		<tbody id="content"></tbody>
+	</table>
 </body>
 </html>
