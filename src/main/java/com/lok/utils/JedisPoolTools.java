@@ -3,6 +3,8 @@ package com.lok.utils;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -14,6 +16,7 @@ import redis.clients.jedis.JedisPoolConfig;
 
 public class JedisPoolTools {
 	//private static JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+	private static Logger logger = Logger.getLogger(JedisPoolTools.class);
 	private static JedisPool jedisPool = null;
 	
 	private static String url ="" ;
@@ -37,6 +40,7 @@ public class JedisPoolTools {
              database = Integer.parseInt(pro.getProperty("redis_database" ));
              jedisPoolConfig.setMaxTotal(maxTotal);
              jedisPool = new JedisPool(jedisPoolConfig,url,port,0,password,database);
+             logger.info("jedisPool连接池:"+jedisPool);
          } catch (Exception e) {
              e.printStackTrace();
          }
@@ -47,7 +51,16 @@ public class JedisPoolTools {
      * @return
      */
     public static Jedis getJedis() {
-    	return jedisPool.getResource();
+    	Jedis jedis = null;
+    	while (jedis==null) {
+			try {
+				jedis = jedisPool.getResource();
+			} catch (Exception e) {
+				jedisPool.returnBrokenResource(jedis);
+			}
+		}
+    	System.out.println(jedis);
+    	return jedis;
     }
     
     /**
@@ -56,9 +69,6 @@ public class JedisPoolTools {
     public static void closeJedis(Jedis jedis) {
     	if (jedisPool!=null) {
     		jedisPool.returnResource(jedis);
-			if (jedis!=null) {
-				jedis.close();
-			}
 		}
     }
 }
