@@ -13,5 +13,8 @@ public class TestGit {
 	//合并结果
 	
 	//公司改2nd
+<<<<<<< HEAD
 	//宿舍改2nd
+=======
+>>>>>>> branch 'master' of https://github.com/classmatelok/springboot-demo.git
 }
