@@ -14,7 +14,8 @@ public class TestGit {
 	
 	//公司改2nd
 	//宿舍改2nd
+	//合并2
 	
-	
-	//宿舍改3nd
+	//公司3rd
+	//宿舍改3rd
 }
