@@ -12,7 +12,8 @@ $(function(){
 				var tr = "";
 				if(resData.status=='1'){
 					$.each(resData.data,function(i,item){
-						tr += "<tr>";
+						tr += "<tr id='tr_"+i+"'>";
+						tr += "<td><input type='checkbox' id='box_"+i+"'/></td>";
 						tr += "<td>"+item.id+"</td>";
 						tr += "<td>"+item.name+"</td>";
 						tr += "<td>"+item.sex+"</td>";
@@ -27,8 +28,23 @@ $(function(){
 			},
 			error:function(){
 				alert("出错了！");
-				
 			}
 		});
 	});
+	
+	$(document).on("click","input[id^='box_']",function(){
+	    $("tr[id='tr_"+this.id.substring(4)+"']").css("color","red");//4是因为取"box_"后面具体选中的i序号
+	});
+	
+	
 })
+
+
+
+
+
+
+
+
+
+
