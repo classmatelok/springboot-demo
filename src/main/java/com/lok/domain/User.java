@@ -1,5 +1,8 @@
 package com.lok.domain;
 
+//import org.hibernate.annotations.DynamicInsert;
+//import org.hibernate.annotations.DynamicUpdate;
+
 import lombok.Data;
 
 /**
@@ -8,6 +11,8 @@ import lombok.Data;
  */
 
 @Data
+//@DynamicInsert(true) //动态插入，与下雷同
+//@DynamicUpdate(true) //动态更新，update时无内容的默认不更新，否则数据库都更为null了
 public class User {
 	private int id;
 	private String name;
