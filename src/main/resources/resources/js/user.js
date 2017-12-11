@@ -33,6 +33,11 @@ $(function(){
 	});
 	
 	$(document).on("click","input[id^='box_']",function(){
+//		debugger;
+//		var a = 1;
+//		var b = 2;
+//		var c = 3;
+//		console.log("a:"+a+",b:"+b+",c:"+c);
 	    $("tr[id='tr_"+this.id.substring(4)+"']").css("color","red");//4是因为取"box_"后面具体选中的i序号
 	});
 	
