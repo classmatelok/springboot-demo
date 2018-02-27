@@ -1,13 +1,23 @@
 package com.lok.utils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class OtherUtils {
 	public static void main(String[] args) {
+		
+		//时间转毫秒数
+//		timeTurnMillion("2019-01-01 00:00:00");
+		
+		//毫秒数转时间
+//		millionTurnTime("1519272156000");
+		
 		//打印A~Z and a~z
 //		getCode();
 		
@@ -35,6 +45,25 @@ public class OtherUtils {
 //		map.put("5", "e");
 //		getCurrentPageContent(2,3,map);
 		
+	}
+	
+	/** 日期转毫秒数 */
+	private static void timeTurnMillion(String time) {
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date date = sdf.parse(time);
+			System.out.println(date.getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/** 毫秒数转日期 */
+	private static void millionTurnTime(String million) {
+		Date date = new Date();
+		date.setTime(Long.parseLong(million));
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		System.out.println(sdf.format(date));
 	}
 	
 	/** 打印A~Z and a~z */
