@@ -28,6 +28,4 @@ public class TestGit {
 	//公司6th
 	//宿舍6th
 	//完结
-	
-	//测试回滚
 }
