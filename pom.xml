@@ -63,11 +63,11 @@
 	  </dependency> -->
 	  
 	  <!-- oracle数据源 -->
-	  <dependency>
+	  <!-- <dependency>
 		  <groupId>com.oracle</groupId>
 		  <artifactId>ojdbc6</artifactId>
 		  <version>6.0.0</version>
-	  </dependency>
+	  </dependency> -->
 	  
 	  <!-- jedis(操作redis) -->
 	  <dependency>
