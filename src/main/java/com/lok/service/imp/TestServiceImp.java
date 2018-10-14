@@ -37,6 +37,7 @@ public class TestServiceImp implements TestService {
 		Future<String> test2 = asyncCoreTools.test2();
 		asyncCoreTools.test3();
 		try {
+			//会阻塞线程
 			str1 = test1.get();
 			str2 = test2.get();
 		} catch (Exception e) {

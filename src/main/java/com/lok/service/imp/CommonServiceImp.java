@@ -23,17 +23,17 @@ public class CommonServiceImp implements CommonService{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		System.out.println(Thread.currentThread().getName());
+		System.out.println("thread1:"+Thread.currentThread().getName());
 		return "task 1 complete";
 	}
 	public String printOut2() {
 		System.out.println("============== printOut2 ==============");
-		System.out.println(Thread.currentThread().getName());
+		System.out.println("thread2:"+Thread.currentThread().getName());
 		return "task 2 complete";
 	}
 	public void printOut3() {
 		System.out.println("============== printOut3 ==============");
-		System.out.println(Thread.currentThread().getName());
+		System.out.println("thread3:"+Thread.currentThread().getName());
 	}
 
 	/**
