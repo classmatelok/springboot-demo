@@ -21,7 +21,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling //开启定时任务
 public class Application {
 	
-	/*//配置TaskExecutor线程池类，不配则默认SimpleAsyncTaskExecutor
+	/*//用于异步调用 - 配置TaskExecutor线程池类，不配则默认SimpleAsyncTaskExecutor
 	@Bean
     public TaskExecutor taskExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();

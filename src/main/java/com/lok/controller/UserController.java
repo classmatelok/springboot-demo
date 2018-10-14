@@ -18,7 +18,7 @@ import com.lok.service.UserService;
  */
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("user")//访问路径为：http://localhost:8080/user
 public class UserController {
 	
 	@Autowired

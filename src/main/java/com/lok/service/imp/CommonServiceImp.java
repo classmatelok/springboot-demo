@@ -40,7 +40,7 @@ public class CommonServiceImp implements CommonService{
 	 * 定时任务
 	 */
 	//@Scheduled(cron=" 10 * * ? * *") // 秒 分 时 日 月 星期 [年] ，?代表占位，*代表所有，此例子代表每到x分10秒时执行
-	@Scheduled(fixedRate=30*1000) //毫秒单位，此处表示每10秒执行一次
+	@Scheduled(fixedRate=30*1000) //毫秒单位，此处表示每30秒执行一次
 	public void printForSchedule() {
 		System.out.println("执行了!第"+(i++)+"次");
 	}
