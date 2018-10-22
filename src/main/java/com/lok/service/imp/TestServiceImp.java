@@ -36,6 +36,7 @@ public class TestServiceImp implements TestService {
 		Future<String> test1 = asyncCoreTools.test1();
 		Future<String> test2 = asyncCoreTools.test2();
 		asyncCoreTools.test3();
+		System.out.println("===== main thread =====");
 		try {
 			//会阻塞线程
 			str1 = test1.get();
