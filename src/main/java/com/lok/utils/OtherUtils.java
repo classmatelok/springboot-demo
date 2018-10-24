@@ -11,6 +11,7 @@ import java.util.Map;
 
 public class OtherUtils {
 	public static void main(String[] args) {
+		System.out.println("431456196803022030".matches("([1-9]\\d{5}(18|19)\\d{2}(0[1-9]|1[0-2])\\d{5}[0-9Xx])|\\d{15}"));//身份证正则校验
 		
 		//时间转毫秒数
 //		timeTurnMillion("2019-01-01 00:00:00");
@@ -25,7 +26,7 @@ public class OtherUtils {
 //		splitStr("");
 		
 		//去“-”符号
-		removeSymbol("78974515-6");
+//		removeSymbol("78974515-6");
 		
 		//给list排序
 //		String[] arr = {"A","A-","A+","AA","AA-","AA+","AAA","B","B-",  "B+", "BB", "BB-", "BB+","BBB","BBB-","BBB+"};
