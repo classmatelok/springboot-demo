@@ -1,20 +1,18 @@
 package com.lok.service.imp;
 
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lok.service.CommonService;
 import com.lok.service.TestService;
 import com.lok.utils.AsyncCoreTools;
 
 @Service
 public class TestServiceImp implements TestService {
 
-	@Autowired
-	private CommonService commonService;
+	//@Autowired
+	//private CommonService commonService;
 	
 	@Autowired
 	private AsyncCoreTools asyncCoreTools;

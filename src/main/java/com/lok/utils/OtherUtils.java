@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("unused")
 public class OtherUtils {
 	public static void main(String[] args) {
 		System.out.println("431456196803022030".matches("([1-9]\\d{5}(18|19)\\d{2}(0[1-9]|1[0-2])\\d{5}[0-9Xx])|\\d{15}"));//身份证正则校验
@@ -119,6 +120,7 @@ public class OtherUtils {
 	}
 	
 	/** 获取list中当前页的子list(参1:pageSize，参2：pageNum) */
+	@SuppressWarnings({ "rawtypes" })
 	private static void getCurrentPageContent(int pageSize, int pageNum, List list) {
 		List subList = null;
 		int listSize = list.size();
@@ -143,6 +145,7 @@ public class OtherUtils {
 	}
 	
 	/** 获取map中当前页的子map(参1:pageSize，参2：pageNum) */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private static void getCurrentPageContent(int pageSize, int pageNum, Map<String,String> map) {
 		Map subMap = null;
 		int mapSize = map.size();

@@ -50,7 +50,8 @@ public class JedisPoolTools {
      * 获取连接
      * @return
      */
-    public static Jedis getJedis() {
+    @SuppressWarnings("deprecation")
+	public static Jedis getJedis() {
     	Jedis jedis = null;
     	while (jedis==null) {
 			try {
@@ -66,7 +67,8 @@ public class JedisPoolTools {
     /**
      * 将连接放回连接池并关闭
      */
-    public static void closeJedis(Jedis jedis) {
+    @SuppressWarnings("deprecation")
+	public static void closeJedis(Jedis jedis) {
     	if (jedisPool!=null) {
     		jedisPool.returnResource(jedis);
 		}

@@ -2,8 +2,6 @@ package com.lok;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
@@ -16,7 +14,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableAutoConfiguration
 @ComponentScan // 可指定包，默认扫启动类的同包及子包
 */
-@SpringBootApplication(exclude={DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class}) //相当于以上三个
+@SpringBootApplication //相当于以上三个(若加上属性 exclude={DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class}代表先不连数据库)
 @EnableAsync //开启异步调用功能
 @EnableScheduling //开启定时任务
 public class Application {
