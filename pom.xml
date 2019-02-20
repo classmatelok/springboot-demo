@@ -72,6 +72,12 @@
 	  	<version>2.4</version>
 	  	<classifier>jdk15</classifier>
 	  </dependency>
+
+      <!-- spring test -->
+      <dependency>
+      	<groupId>org.springframework.boot</groupId>
+      	<artifactId>spring-boot-starter-test</artifactId>
+      </dependency>
   </dependencies>
   
   <build>

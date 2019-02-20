@@ -11,6 +11,9 @@ import com.lok.domain.User;
 
 public interface UserService {
 
-	List<User> findUser();
-
+	List<User> listUser();
+	
+	User addOrUpdateUser(User user);
+	
+	void deleteUser(List<Integer> ids);
 }
