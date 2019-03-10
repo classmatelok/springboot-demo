@@ -49,6 +49,26 @@ public class UserController {
 	}
 	
 	/**
+	 * 根据id查询用户
+	 * @return
+	 */
+	@RequestMapping(value="/find",method=RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseData findUser(Integer id) {
+		ResponseData rd = new ResponseData();
+		User user = this.userService.findUser(id);
+		if(user!=null) {
+			rd.setStatus(1);
+			rd.setMessage("查询成功！");
+			rd.setData(user);
+		}else {
+			rd.setStatus(0);
+			rd.setMessage("查询失败！");
+		}
+		return rd;
+	}
+	
+	/**
 	 * 添加或修改
 	 */
 	@RequestMapping(value="/addOrUpdate",method=RequestMethod.POST)

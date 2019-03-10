@@ -27,6 +27,13 @@ public class UserServiceImp implements UserService {
 	public List<User> listUser() {
 		return this.userDao.findAll();
 	}
+	
+	/**
+	 * 根据id查询用户
+	 */
+	public User findUser(Integer id) {
+		return this.userDao.findOne(id);
+	}
 
 	/**
 	 * 添加或修改用户

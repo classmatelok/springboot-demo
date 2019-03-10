@@ -13,6 +13,8 @@ public interface UserService {
 
 	List<User> listUser();
 	
+	User findUser(Integer id);
+	
 	User addOrUpdateUser(User user);
 	
 	void deleteUser(List<Integer> ids);
