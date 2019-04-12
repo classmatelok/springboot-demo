@@ -70,10 +70,11 @@ public class OtherUtils {
 	
 	/** 打印A~Z and a~z */
 	private static void getCode() {
-		for (int i = 97; i < 65+26; i++) {
+		for (int i = 97; i < 97+26; i++) {
 			System.out.print((char)i);
 		}
-		for (int i = 65; i < 97+26; i++) {
+		System.out.println();
+		for (int i = 65; i < 65+26; i++) {
 			System.out.print((char)i);
 		}
 	}
