@@ -8,7 +8,7 @@ import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoDatabase;
  
-//mongodb 连接数据库工具类
+//mongodb 连接数据库工具类，导包mongo-java-driver
 public class MongoDBUtil {
     // 方式一：不通过认证获取连接数据库对象
     public static MongoDatabase getConnect(){

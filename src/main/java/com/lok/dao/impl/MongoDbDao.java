@@ -24,8 +24,7 @@ public class MongoDbDao {
 		collection.insertOne(doc);
 		
 		//2nd
-		MongoTemplateUtil mongoTemplateUtil = new MongoTemplateUtil();
-		MongoTemplate template = mongoTemplateUtil.getMongoTemplate();
+		MongoTemplate template = MongoTemplateUtil.getMongoTemplate();
 		template.insert(new User());
 	}
 	
