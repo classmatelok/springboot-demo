@@ -2,6 +2,7 @@ package com.lok.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -12,7 +13,7 @@ import java.util.Map;
 @SuppressWarnings("unused")
 public class OtherUtils {
 	public static void main(String[] args) {
-		System.out.println("431456196803022030".matches("([1-9]\\d{5}(18|19)\\d{2}(0[1-9]|1[0-2])\\d{5}[0-9Xx])|\\d{15}"));//身份证正则校验
+//		System.out.println("431456196803022030".matches("([1-9]\\d{5}(18|19)\\d{2}(0[1-9]|1[0-2])\\d{5}[0-9Xx])|\\d{15}"));//身份证正则校验
 		
 		//时间转毫秒数
 //		timeTurnMillion("2019-01-01 00:00:00");
@@ -21,7 +22,7 @@ public class OtherUtils {
 //		millionTurnTime("1519272156000");
 		
 		//打印A~Z and a~z
-//		getCode();
+		getCode();
 		
 		//按“，”分割字符串
 //		splitStr("");
@@ -121,9 +122,8 @@ public class OtherUtils {
 	}
 	
 	/** 获取list中当前页的子list(参1:pageSize，参2：pageNum) */
-	@SuppressWarnings({ "rawtypes" })
-	private static void getCurrentPageContent(int pageSize, int pageNum, List list) {
-		List subList = null;
+	private static <T> void getCurrentPageContent(int pageSize, int pageNum, List<T> list) {
+		List<T> subList = null;
 		int listSize = list.size();
 		//当数据不足一页时直接返回
 		if(listSize<=pageSize) {
