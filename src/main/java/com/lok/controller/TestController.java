@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,8 +30,8 @@ public class TestController {
 	/**
 	 * 测试springboot异步调用功能
 	 */
-	//@GetMapping//spring4.3才出
-	@RequestMapping(value="/async",method=RequestMethod.GET)
+	@GetMapping("/async")//spring4.3才出
+	//@RequestMapping(value="/async",method=RequestMethod.GET)
 	public void testAsync() {
 		testService.testAsync();
 	}

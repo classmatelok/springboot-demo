@@ -24,13 +24,13 @@ public class User {
 	@Id
 	private int id;
 	
-	@Column(name="name")
+//	@Column(name="name")//默认按照驼峰映射，所以一般情况可省略
 	private String name;
 	
-	@Column(name="sex")
+//	@Column(name="sex")
 	private String sex;
 	
-	@Column(name="age")
+//	@Column(name="age")
 	private int age;
 	
 }

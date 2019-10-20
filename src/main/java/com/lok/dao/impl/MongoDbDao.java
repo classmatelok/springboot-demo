@@ -10,20 +10,23 @@ import com.lok.domain.User;
 import com.lok.utils.MongoDBUtil;
 import com.lok.utils.MongoTemplateUtil;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 
 public class MongoDbDao {
 	
 	public void mongoDemo() {
-		//1st
-		MongoDatabase mongoDatabase = MongoDBUtil.getConnectByCredentials();
-		MongoCollection<Document> collection = mongoDatabase.getCollection("collection_name");
+		//工具类一
+		//方式一：自主构造document，自由度高
+		//MongoDatabase mongoDatabase = MongoDBUtil.getConnectByCredentials();
+		MongoCollection<Document> docCollection = MongoDBUtil.getCollection("collection_name");
 		Document doc = new Document();
 		doc.append("Name", "name1");
 		doc.append("Age", 20);
-		collection.insertOne(doc);
+		docCollection.insertOne(doc);//需自己构造
+		//方式二：直接用实体构造collection，操作方便
+		MongoCollection<User> collection = MongoDBUtil.getCollection("collection_name", User.class);
+		collection.insertOne(new User());//直接塞对应bean
 		
-		//2nd
+		//工具类二
 		MongoTemplate template = MongoTemplateUtil.getMongoTemplate();
 		template.insert(new User());
 	}

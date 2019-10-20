@@ -4,11 +4,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * @Description 
- * @date 2017年9月4日
- */
-
 public final class CookieTools {
     /**
      * 根据cookie的名称获取Cookie
