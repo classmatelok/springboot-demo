@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,9 +73,9 @@ public class UserController {
 	/**
 	 * 添加或修改
 	 */
-	@RequestMapping(value="/addOrUpdate",method=RequestMethod.POST)
+	@RequestMapping(value="/addOrUpdate", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)//指定响应内容为json,utf-8格式
 	@ResponseStatus
-	public ResponseData addOrUpdateUser(User user) {
+	public ResponseData addOrUpdateUser(@RequestBody User user) {
 		ResponseData rd = new ResponseData();
 		try {
 			user = this.userService.addOrUpdateUser(user);
