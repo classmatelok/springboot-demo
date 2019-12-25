@@ -22,7 +22,7 @@ import com.lok.domain.JsonDemo;
  * 				用 @Configuration+@Bean的好处是，提前将相关配置文件在server启动的时候就加载注册为bean，若用@Service则调用时才注册。
  * 				另还可设计成配合@Profile读取不同数据源，如mongodb
  */
- @Configuration //
+ @Configuration
 public class JsonFileReader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JsonFileReader.class);
 	private static String content;
@@ -40,7 +40,7 @@ public class JsonFileReader {
 	
 	@Bean("classmate")
 	public static List<JsonDemo> getClassmate() {
-		JSONObject contentJsonObj = JSONObject.parseObject(content);
+		JSONObject contentJsonObj = JSONObject.parseObject(content);//需要com.alibaba.fastjson包
 		JSONArray students = contentJsonObj.getJSONArray("students");
 		List<JsonDemo> list = JSONObject.parseArray(students.toJSONString(), JsonDemo.class);
 		return list;
