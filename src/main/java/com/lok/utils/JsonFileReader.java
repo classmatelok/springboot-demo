@@ -38,7 +38,7 @@ public class JsonFileReader {
 		}
 	}
 	
-	@Bean("classmate")
+	@Bean("students")
 	public static List<JsonDemo> getClassmate() {
 		JSONObject contentJsonObj = JSONObject.parseObject(content);//需要com.alibaba.fastjson包
 		JSONArray students = contentJsonObj.getJSONArray("students");

@@ -32,11 +32,11 @@ public class TestController {
 	private TestService testService;
 	
 	@Resource
-	private List<JsonDemo> jsonDemo;
+	private List<JsonDemo> students;
 	
 	@GetMapping("/json")
 	public List<JsonDemo> testGetJsonFileContent() {
-		return jsonDemo;
+		return students;
 	}
 	
 	/**
