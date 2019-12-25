@@ -13,7 +13,7 @@ import com.lok.domain.User;
 import com.lok.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes=com.lok.Application.class)
+@SpringBootTest(classes=com.lok.LokApplication.class)
 public class TestClass {
 	
 	@Autowired

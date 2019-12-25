@@ -14,6 +14,7 @@ import com.mongodb.client.MongoDatabase;
 //mongodb 连接数据库工具类，导包mongo-java-driver
 public class MongoDBUtil {
 
+	//以下信息可通过properties - @value方式注入
 	private static String host;
 	private static int point;
 	private static String username;

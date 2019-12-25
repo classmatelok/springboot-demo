@@ -1,5 +1,8 @@
 package com.lok.controller;
 
+import java.util.List;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lok.domain.JsonDemo;
 import com.lok.service.TestService;
 import com.lok.utils.CookieTools;
 import com.lok.utils.JedisPoolTools;
@@ -26,6 +30,14 @@ public class TestController {
 	
 	@Autowired
 	private TestService testService;
+	
+	@Resource
+	private List<JsonDemo> jsonDemo;
+	
+	@GetMapping("/json")
+	public List<JsonDemo> testGetJsonFileContent() {
+		return jsonDemo;
+	}
 	
 	/**
 	 * 测试springboot异步调用功能
@@ -67,7 +79,7 @@ public class TestController {
 	public String testFindRedis(@RequestParam("code")String code) {
 		Jedis jedis = JedisPoolTools.getJedis();
 		String result = jedis.get(code);
-		JedisPoolTools.closeJedis(jedis);//关闭连接
+		JedisPoolTools.closeJedis(jedis);//释放连接
 		return result;
 	}
 }

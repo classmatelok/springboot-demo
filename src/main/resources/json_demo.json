@@ -1,0 +1,11 @@
+{
+    "students" : [
+        {
+            "name" : "Lok",
+            "classmate" : [
+                "Jack",
+                "Mike"
+            ]
+        }
+    ]
+ }
