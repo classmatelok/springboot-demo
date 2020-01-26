@@ -9,10 +9,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 public class OtherUtils {
 	public static void main(String[] args) {
+		loopArr();
+		filterList();
+		filterMap();
+		
 //		System.out.println("431456196803022030".matches("([1-9]\\d{5}(18|19)\\d{2}(0[1-9]|1[0-2])\\d{5}[0-9Xx])|\\d{15}"));//身份证正则校验
 		
 		//时间转毫秒数
@@ -22,7 +27,7 @@ public class OtherUtils {
 //		millionTurnTime("1519272156000");
 		
 		//打印A~Z and a~z
-		getCode();
+//		getCode();
 		
 		//按“，”分割字符串
 //		splitStr("");
@@ -48,6 +53,32 @@ public class OtherUtils {
 //		map.put("5", "e");
 //		getCurrentPageContent(2,3,map);
 		
+	}
+	
+	/** 遍历每个元素 */
+	private static void loopArr() {
+		String[] arr = {"a","ab","abc","abcd","abcde"};
+		Arrays.stream(arr).forEach(x -> {System.out.println(x);});
+	}
+	
+	/** 遍历List并塞选符合条件的元素 */
+	private static void filterList() {
+		String[] arr = {"a","ab","abc","abcd","abcde"};
+		List<String> list = Arrays.asList(arr);
+		List<String> subList = list.stream().filter(x -> x.contains("bc")).collect(Collectors.toList());
+		System.out.println(subList);
+	}
+	
+	/** 遍历Map并塞选符合条件的键值 */
+	private static void filterMap() {
+		Map<String, String> map = new HashMap<>();
+		map.put("1", "test1");
+		map.put("2", "test2");
+		map.put("3", "test3");
+		map.put("4", "test4");
+		
+		Map<String, String> subMap = map.entrySet().stream().filter(e -> e.getKey().equals("1")).collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue()));
+		System.out.println(subMap);
 	}
 	
 	/** 日期转毫秒数 */
