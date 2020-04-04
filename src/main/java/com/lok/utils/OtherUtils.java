@@ -2,21 +2,29 @@ package com.lok.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 public class OtherUtils {
 	public static void main(String[] args) {
-		loopArr();
-		filterList();
-		filterMap();
+		
+		getRepeat();
+//		loopArr();
+//		filterList();
+//		filterMap();
 		
 //		System.out.println("431456196803022030".matches("([1-9]\\d{5}(18|19)\\d{2}(0[1-9]|1[0-2])\\d{5}[0-9Xx])|\\d{15}"));//身份证正则校验
 		
@@ -53,6 +61,29 @@ public class OtherUtils {
 //		map.put("5", "e");
 //		getCurrentPageContent(2,3,map);
 		
+	}
+
+	/** 找出重复元素 */
+	private static void getRepeat() {
+		List<String> strings = new ArrayList<>();
+        strings.add("1");
+        strings.add("2");
+        strings.add("2");
+        strings.add("3");
+        strings.add("3");
+        strings.add("3");
+ 
+        Set<String> result = new HashSet<>();
+        Set<String> exist = new HashSet<>();
+ 
+        for (String s : strings) {
+            if (exist.contains(s)) {
+            	result.add(s);
+            } else {
+            	exist.add(s);
+            }
+        }
+        System.out.println("重复的值：" + String.join(", ", result));
 	}
 	
 	/** 遍历每个元素 */
