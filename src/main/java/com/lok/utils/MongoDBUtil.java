@@ -3,13 +3,13 @@ package com.lok.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bson.Document;
-
-import com.mongodb.MongoClient;
-import com.mongodb.MongoCredential;
-import com.mongodb.ServerAddress;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+//import org.bson.Document;
+//
+//import com.mongodb.MongoClient;
+//import com.mongodb.MongoCredential;
+//import com.mongodb.ServerAddress;
+//import com.mongodb.client.MongoCollection;
+//import com.mongodb.client.MongoDatabase;
  
 //mongodb 连接数据库工具类，导包mongo-java-driver
 public class MongoDBUtil {
@@ -21,6 +21,7 @@ public class MongoDBUtil {
 	private static String password;
 	private static String databaseName;
 	
+	/* 避免启动报错，此处屏蔽
     // 方式一：不通过认证获取连接数据库对象
     public static MongoDatabase getConnect(){
         //连接到 mongodb 服务
@@ -61,4 +62,5 @@ public class MongoDBUtil {
 		MongoCollection<T> collection = mongoDatabase.getCollection(connectionName, clz);
 		return collection;
 	}
+	*/
 }

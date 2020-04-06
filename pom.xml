@@ -13,9 +13,12 @@
 
 	<properties>
 		<!-- The main class to start by executing java -jar -->
-		<!-- <start-class>com.lok.Application</start-class> <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
-		<!-- springboot parent 已经定义了版本 <springboot.version>1.3.6.RELEASE</springboot.version> 
-			<jedis.version>2.6.0</jedis.version> <lombok.version>1.16.14</lombok.version> -->
+		<!-- <start-class>com.lok.Application</start-class>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
+		<!-- springboot parent 已经定义了版本 
+		<springboot.version>1.3.6.RELEASE</springboot.version> 
+		<jedis.version>2.6.0</jedis.version>
+		<lombok.version>1.16.14</lombok.version> -->
 	</properties>
 
 	<dependencies>
@@ -31,16 +34,22 @@
 			<!-- <version>${springboot.version}</version> -->
 		</dependency>
 
-		<!-- mongodb数据源 -->
-		<dependency>
+		<!-- mongodb数据源 - MongoTemplate方式 -->
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
+		</dependency> -->
+		<!-- mongodb数据源 - 原生mongo方式 -->
+		<!-- <dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+		</dependency> -->
 
 		<!-- mysql数据源 -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.19</version>
 		</dependency>
 
 		<!-- oracle数据源 -->
@@ -79,11 +88,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 		</dependency>
 
-		<!-- mongodb -->
-		<dependency>
-			<groupId>org.mongodb</groupId>
-			<artifactId>mongo-java-driver</artifactId>
-		</dependency>
+		
 	</dependencies>
 
 	<build>

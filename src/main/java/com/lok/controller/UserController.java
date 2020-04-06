@@ -39,7 +39,7 @@ public class UserController {
 	public ResponseData listUser() {
 		ResponseData rd = new ResponseData();
 		List<User> users = this.userService.listUser();
-		if(users!=null&&users.size()>0) {
+		if(users!=null) {
 			rd.setStatus(1);
 			rd.setMessage("查询成功！");
 			rd.setData(users);
@@ -84,7 +84,7 @@ public class UserController {
 			rd.setData(user);
 			
 		} catch (Exception e) {
-			logger.info("添加或修改失败！User="+user);
+			logger.info("添加或修改失败！User:{}", user);
 			rd.setStatus(0);
 			rd.setMessage("添加或修改失败！");
 		}
@@ -105,7 +105,7 @@ public class UserController {
 			rd.setMessage("删除成功！");
 			
 		} catch (Exception e) {
-			logger.info("删除失败,ids="+ids);
+			logger.info("删除失败,ids:{}", ids);
 			rd.setStatus(0);
 			rd.setMessage("删除失败！");
 		}

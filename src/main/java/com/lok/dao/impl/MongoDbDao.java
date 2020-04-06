@@ -3,16 +3,17 @@
  */
 package com.lok.dao.impl;
 
-import org.bson.Document;
-import org.springframework.data.mongodb.core.MongoTemplate;
+//import org.bson.Document;
+//import org.springframework.data.mongodb.core.MongoTemplate;
 
 import com.lok.domain.User;
 import com.lok.utils.MongoDBUtil;
 import com.lok.utils.MongoTemplateUtil;
-import com.mongodb.client.MongoCollection;
+//import com.mongodb.client.MongoCollection;
 
 public class MongoDbDao {
 	
+	/* 避免启动报错，此处屏蔽
 	public void mongoDemo() {
 		//工具类一
 		//方式一：自主构造document，自由度高
@@ -29,6 +30,8 @@ public class MongoDbDao {
 		//工具类二
 		MongoTemplate template = MongoTemplateUtil.getMongoTemplate();
 		template.insert(new User());
+		
+		//方式三：jpa
 	}
-	
+	*/
 }
