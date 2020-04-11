@@ -16,12 +16,12 @@ import java.time.format.DateTimeFormatter;
 public class TimeUtil {
 
 	public static void main(String[] args) {
+		Instant instant = getCurrentMillion();
 		LocalDate date = getToday();
 		Period between = Period.between(date, date);
 		between.getDays();
-		Instant instant = getCurrentMillion();
 		Duration duration = Duration.between(instant, Instant.now());
-		duration.getNano();
+		System.out.println(duration.getNano());
 		System.out.println(date.toString()); // 2020-01-27
 		System.out.println(date.getYear()); // 2020
 		System.out.println(date.getMonthValue()); // 1
@@ -36,7 +36,7 @@ public class TimeUtil {
 	}
 	
 	
-	//日期
+	//毫秒数
 	public static Instant getCurrentMillion() {
 		Instant instant = Instant.now();
 		return instant;
