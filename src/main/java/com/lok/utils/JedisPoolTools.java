@@ -32,7 +32,7 @@ public class JedisPoolTools {
              maxTotal = Integer.parseInt(pro.getProperty("redis_maxTotal" ));
              database = Integer.parseInt(pro.getProperty("redis_database" ));
              
-             //方式二：直接通过spring的@value("")注解读取，则可省掉上面加载代码
+             //方式二：直接通过spring的@PropertySource+@value("")注解读取，则可省掉上面加载代码
              // N/A
              
              jedisPoolConfig.setMaxTotal(maxTotal);

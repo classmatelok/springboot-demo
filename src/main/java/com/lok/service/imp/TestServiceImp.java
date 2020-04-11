@@ -5,14 +5,15 @@ import java.util.concurrent.Future;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lok.service.CommonService;
 import com.lok.service.TestService;
 import com.lok.utils.AsyncCoreTools;
 
 @Service
 public class TestServiceImp implements TestService {
 
-	//@Autowired
-	//private CommonService commonService;
+	@Autowired
+	private CommonService commonService;
 	
 	@Autowired
 	private AsyncCoreTools asyncCoreTools;
@@ -46,6 +47,14 @@ public class TestServiceImp implements TestService {
 		//最后输出结果
 		System.out.println(str1);
 		System.out.println(str2);
+	}
+
+	/**
+	 * 测试策略模式
+	 */
+	@Override
+	public String teachByCourseType(String courseType) {
+		return this.commonService.teachByCourseType(courseType);
 	}
 
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -81,5 +82,15 @@ public class TestController {
 		String result = jedis.get(code);
 		JedisPoolTools.closeJedis(jedis);//释放连接
 		return result;
+	}
+	
+	/**
+	 * 测试策略模式的运用：传入不同课程类型，触发不同上课内容
+	 * @param courseType 
+	 * @return
+	 */
+	@GetMapping("/teach/{courseType:\\w+}")//路径参数courseType需满足该正则表达式
+	public String teachByCourseType(@PathVariable("courseType") String courseType) {
+		return this.testService.teachByCourseType(courseType);
 	}
 }
