@@ -13,9 +13,9 @@
 
 	<properties>
 		<!-- The main class to start by executing java -jar -->
-		<!-- <start-class>com.lok.Application</start-class>
+		<!-- <start-class>com.lok.LokApplication</start-class>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
-		<!-- springboot parent 已经定义了版本 
+		<!-- springboot parent 已统一定义了大部分整合api的版本 
 		<springboot.version>1.3.6.RELEASE</springboot.version> 
 		<jedis.version>2.6.0</jedis.version>
 		<lombok.version>1.16.14</lombok.version> -->
@@ -30,8 +30,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<!-- 已交由parent统一约定版本 -->
-			<!-- <version>${springboot.version}</version> -->
+		</dependency>
+		<!-- spring test -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
 		</dependency>
 
 		<!-- mongodb数据源 - MongoTemplate方式 -->
@@ -49,12 +52,15 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.19</version>
+			<!-- <version>8.0.19</version> -->
 		</dependency>
 
 		<!-- oracle数据源 -->
-		<!-- <dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc6</artifactId> 
-			<version>6.0.0</version> </dependency> -->
+		<!-- <dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId> 
+			<version>6.0.0</version>
+		</dependency> -->
 
 		<!-- jedis(操作redis) -->
 		<dependency>
@@ -80,14 +86,6 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
 		</dependency>
-
-
-		<!-- spring test -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-		</dependency>
-
 		
 	</dependencies>
 

@@ -18,7 +18,7 @@ import com.lok.service.CommonService;
 @Component
 public class AsyncCoreTools {
 
-	//注入需要做异步调用的相关的类
+	//注入需要异步调用的相关的类
 	@Autowired
 	private CommonService commonService;
 	

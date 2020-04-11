@@ -1,11 +1,16 @@
 package com.lok;
 
+import java.util.concurrent.ThreadPoolExecutor;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
  * @Description 启动类
@@ -22,15 +27,16 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling //开启定时任务
 public class LokApplication {
 	
-	/*//用于异步调用 - 配置TaskExecutor线程池类，不配则默认SimpleAsyncTaskExecutor
+	//用于异步调用 - 配置TaskExecutor线程池类，不配则默认SimpleAsyncTaskExecutor
 	@Bean
     public TaskExecutor taskExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(5);
-        executor.setMaxPoolSize(10);
-        executor.setQueueCapacity(25);
+        executor.setCorePoolSize(4);//核心线程数
+        executor.setQueueCapacity(25);//工作队列，CorePoolSize满后放此
+        executor.setMaxPoolSize(10);//最大线程数，超过则需配策略
+        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());//超过后由主线程执行策略，默认是拒绝并抛异常
         return executor;
-    }*/
+    }
 	
 	
 	public static void main(String[] args) {
