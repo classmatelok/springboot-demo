@@ -1,17 +1,21 @@
 package com.lok.common.service.imp;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.Future;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lok.common.service.CommonService;
 import com.lok.common.utils.AsyncCoreTools;
 
 @Service
 public class TestServiceImp {
 
-//	@Autowired
-//	private CommonService commonService;
+	@Autowired
+	private CommonService commonService;
 	
 	@Autowired
 	private AsyncCoreTools asyncCoreTools;
@@ -47,6 +51,29 @@ public class TestServiceImp {
 		//最后输出结果
 		System.out.println(str1);
 		System.out.println(str2);
+	}
+
+	/**
+	 * 测试函数式接口：输入数字，(通过公共逻辑统一处理后，)局部按函数式不同的实现，算出结果
+	 * @param num
+	 * @return
+	 */
+	public List<String> testFunctionInterface(Integer num) {
+		this.commonService.getByFunctionInterface(()->{
+			System.out.println("无返回值函数式接口实现。");
+		});
+		
+		//局部实现1 - 相当于匿名内部类的用法
+		String responStr1 = this.commonService.getByFunctionInterfaceWithParam(reqNum -> {
+			return "局部实现乘以1：" + reqNum.intValue()*1;
+		}, num);
+		//局部实现2 - 相当于匿名内部类的用法
+		String responStr2 = this.commonService.getByFunctionInterfaceWithParam(reqNum -> {
+			return "局部实现乘以2：" + reqNum.intValue()*2;
+		}, num);
+		
+		List<String> list = new ArrayList<>(Arrays.asList(new String[] {responStr1, responStr2}));
+		return list;
 	}
 
 }

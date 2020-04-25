@@ -9,6 +9,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.lok.common.service.CommonService;
+import com.lok.functionInterface.FunctionInterface;
+import com.lok.functionInterface.FunctionInterfaceWithParam;
 import com.lok.strategy.Course;
 
 /**
@@ -63,16 +65,20 @@ public class CommonServiceImp implements CommonService{
 	}
 	
 	/**
-	 * 函数式接口的运用
+	 * 函数式接口的运用：输入数字，(通过公共逻辑统一处理后，)局部按函数式不同的实现，算出结果。
+	 * 使用场景：尤其是多个功能接口的实现里有大量相同逻辑代码，仅局部逻辑不同时，即可考虑函数时接口
 	 */
 	@Override
-	public void getByFunctionInterface() {
-		// TODO Auto-generated method stub
-		
+	public void getByFunctionInterface(FunctionInterface funInterface) {
+		funInterface.getByFunctionInterface();
 	}
 	@Override
-	public String getByFunctionInterfaceWithParam(String reqMsg) {
-		// TODO Auto-generated method stub
-		return null;
+	public String getByFunctionInterfaceWithParam(FunctionInterfaceWithParam funInterfaceWithParam, Integer num) {
+		//1.公共逻辑
+		num = Integer.valueOf(num.intValue()*10);
+		//2.局部逻辑，根据不同的函数式接口来实现不同运算逻辑，由调用方定义此块逻辑
+		String commonResult = funInterfaceWithParam.getByFunctionInterfaceWithParam(num);
+		//3.公共逻辑
+		return "统一乘以10，" + commonResult;
 	}
 }

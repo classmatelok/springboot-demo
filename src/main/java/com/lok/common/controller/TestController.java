@@ -97,13 +97,13 @@ public class TestController {
 	}
 	
 	/**
-	 * 测试函数式接口的运用
-	 * @param courseType 
+	 * 测试函数式接口的运用：将输入数字按不同函数式实现算出结果
+	 * 使用场景：尤其是多个功能接口的实现里有大量相同逻辑代码，仅局部逻辑不同时，即可考虑函数时接口
+	 * @param num 输入数字 
 	 * @return
 	 */
 	@GetMapping("/functionInterface")
-	public String testFunctionInterface(@RequestParam("reqMsg") String reqMsg) {
-		this.commonService.getByFunctionInterface();
-		return this.commonService.getByFunctionInterfaceWithParam(reqMsg);
+	public List<String> testFunctionInterface(@RequestParam("num") Integer num) {
+		return this.testService.testFunctionInterface(num);
 	}
 }
