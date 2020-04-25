@@ -1,27 +1,33 @@
 package com.lok.mongo;
 
-import java.util.ArrayList;
-import java.util.List;
-
+//import java.util.ArrayList;
+//import java.util.LinkedList;
+//import java.util.List;
+//
 //import org.bson.Document;
+//import org.bson.conversions.Bson;
 //
 //import com.mongodb.MongoClient;
 //import com.mongodb.MongoCredential;
 //import com.mongodb.ServerAddress;
+//import com.mongodb.client.FindIterable;
 //import com.mongodb.client.MongoCollection;
+//import com.mongodb.client.MongoCursor;
 //import com.mongodb.client.MongoDatabase;
+//import com.mongodb.client.result.DeleteResult;
  
 //mongodb 连接数据库工具类，导包mongo-java-driver
 public class MongoDBUtil {
 
-	//以下信息可通过properties - @value方式注入
+	//以下信息可通过properties - @value方式注入,或手动load不同环境的配置
 	private static String host;
 	private static int point;
 	private static String username;
 	private static String password;
 	private static String databaseName;
 	
-	/* 避免启动报错，此处屏蔽
+	/*
+	//避免启动报错，此处屏蔽
     // 方式一：不通过认证获取连接数据库对象
     public static MongoDatabase getConnect(){
         //连接到 mongodb 服务
@@ -61,6 +67,31 @@ public class MongoDBUtil {
 		MongoDatabase mongoDatabase = MongoDBUtil.getConnectByCredentials();
 		MongoCollection<T> collection = mongoDatabase.getCollection(connectionName, clz);
 		return collection;
+	}
+	
+	public static <T> List<T> getList(String connectionName, Class<T> clz) {
+		MongoCollection<T> collection = getCollection(connectionName, clz);
+		FindIterable<T> docs = collection.find();
+		return getList(docs);
+	}
+	public static <T> List<T> getListWithFilter(String connectionName, Class<T> clz, Bson filter) {
+		MongoCollection<T> collection = getCollection(connectionName, clz);
+		FindIterable<T> docs = collection.find(filter);
+		return getList(docs);
+	}
+	private static <T> List<T> getList(FindIterable<T> docs) {
+		MongoCursor<T> cursor = docs.iterator();
+		List<T> list = new LinkedList<T>();
+		while (cursor.hasNext()) {
+			list.add(cursor.next());
+		}
+		return list;
+	}
+	
+	public static <T> long remove(String connectionName, Class<T> clz, Bson filter) {
+		MongoCollection<T> collection = getCollection(connectionName, clz);
+		DeleteResult result = collection.deleteMany(filter);
+		return result.getDeletedCount();
 	}
 	*/
 }
