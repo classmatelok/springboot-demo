@@ -32,7 +32,7 @@ public class UserServiceImp implements UserService {
 	 * 根据id查询用户
 	 */
 	public User findUser(Integer id) {
-		return this.userDao.findOne(id);
+		return this.userDao.findById(id).get();//或(findOne(Example.of(user))构造带id的实体传入，低版本可直接findOne(id))
 	}
 
 	/**

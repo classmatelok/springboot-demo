@@ -1,5 +1,7 @@
 package com.lok.mongo;
 
+import org.springframework.data.annotation.Id;
+
 import lombok.Data;
 
 /**
@@ -8,8 +10,10 @@ import lombok.Data;
  */
 
 @Data
-public class UserMongo {
+//@Document(collection = "xx_user")//jpa配置
+public class MongoBeanDemo {
 
+	//@Id//jpa配置
 	private int id;
 	private String name;
 	private String sex;
