@@ -66,7 +66,7 @@ public class CommonServiceImp implements CommonService{
 	
 	/**
 	 * 函数式接口的运用：输入数字，(通过公共逻辑统一处理后，)局部按函数式不同的实现，算出结果。
-	 * 使用场景：尤其是多个功能接口的实现里有大量相同逻辑代码，仅局部逻辑不同时，即可考虑函数时接口
+	 * 使用场景：尤其是多个功能接口的实现里有大量相同逻辑代码，仅局部逻辑不同时，即可考虑函数时接口，可视作匿名内部类使用
 	 */
 	@Override
 	public void getByFunctionInterface(FunctionInterface funInterface) {
