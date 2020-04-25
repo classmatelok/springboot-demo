@@ -3,7 +3,7 @@
  */
 package com.lok.mongo;
 
-import org.springframework.data.authentication.UserCredentials;
+//import org.springframework.data.authentication.UserCredentials;
 //import org.springframework.data.mongodb.core.MongoTemplate;
 
 //import com.mongodb.MongoClient;
