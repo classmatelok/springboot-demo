@@ -49,14 +49,13 @@ public class JedisPoolTools {
      * 获取连接
      * @return
      */
-    @SuppressWarnings("deprecation")
 	public static Jedis getJedis() {
     	Jedis jedis = null;
     	while (jedis==null) {
 			try {
 				jedis = jedisPool.getResource();
 			} catch (Exception e) {
-				jedisPool.returnBrokenResource(jedis);
+				closeJedis(jedis);
 			}
 		}
     	System.out.println(jedis);
@@ -64,12 +63,9 @@ public class JedisPoolTools {
     }
     
     /**
-     * 将连接放回连接池并关闭
+     * 释放连接(旧版本通过jedisPool.returnBrokenResource(jedis)释放)
      */
-    @SuppressWarnings("deprecation")
 	public static void closeJedis(Jedis jedis) {
-    	if (jedisPool!=null) {
-    		jedisPool.returnResource(jedis);
-		}
+    	jedis.close();
     }
 }
