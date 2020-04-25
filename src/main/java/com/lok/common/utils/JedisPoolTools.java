@@ -3,14 +3,15 @@ package com.lok.common.utils;
 import java.io.InputStream;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 public class JedisPoolTools {
-	private static Logger logger = Logger.getLogger(JedisPoolTools.class);
+	private static Logger logger = LoggerFactory.getLogger(JedisPoolTools.class);
 	
 	private static JedisPool jedisPool = null;
 	private static String url ="" ;
