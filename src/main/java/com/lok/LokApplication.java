@@ -8,9 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.TaskExecutor;
+import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
 /**
  * @Description 启动类
@@ -37,6 +39,14 @@ public class LokApplication {
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());//超过后由主线程执行策略，默认是拒绝并抛异常
         return executor;
     }
+	
+	//用于动态创建定时任务
+	@Bean
+	public TaskScheduler taskScheduler() {
+		ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
+		scheduler.setPoolSize(4);//核心线程数
+		return scheduler;
+	}
 	
 	
 	public static void main(String[] args) {
