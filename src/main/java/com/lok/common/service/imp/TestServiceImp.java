@@ -8,14 +8,14 @@ import java.util.concurrent.Future;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lok.common.service.CommonService;
 import com.lok.common.utils.AsyncCoreTools;
+import com.lok.functionInterface.FunctionInterfaceService;
 
 @Service
 public class TestServiceImp {
 
 	@Autowired
-	private CommonService commonService;
+	private FunctionInterfaceService functionInterfaceService;
 	
 	@Autowired
 	private AsyncCoreTools asyncCoreTools;
@@ -59,16 +59,16 @@ public class TestServiceImp {
 	 * @return
 	 */
 	public List<String> testFunctionInterface(Integer num) {
-		this.commonService.getByFunctionInterface(()->{
+		this.functionInterfaceService.getByFunctionInterface(()->{
 			System.out.println("无返回值函数式接口实现。");
 		});
 		
 		//局部实现1 - 相当于匿名内部类的用法
-		String responStr1 = this.commonService.getByFunctionInterfaceWithParam(reqNum -> {
+		String responStr1 = this.functionInterfaceService.getByFunctionInterfaceWithParam(reqNum -> {
 			return "局部实现乘以1：" + reqNum.intValue()*1;
 		}, num);
 		//局部实现2 - 相当于匿名内部类的用法
-		String responStr2 = this.commonService.getByFunctionInterfaceWithParam(reqNum -> {
+		String responStr2 = this.functionInterfaceService.getByFunctionInterfaceWithParam(reqNum -> {
 			return "局部实现乘以2：" + reqNum.intValue()*2;
 		}, num);
 		

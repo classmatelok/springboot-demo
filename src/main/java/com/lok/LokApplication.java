@@ -1,7 +1,6 @@
 package com.lok;
 
 import java.util.concurrent.ThreadPoolExecutor;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -50,14 +49,15 @@ public class LokApplication {
 	
 	
 	public static void main(String[] args) {
-/*		
+		/*		
 		//可设置JVM参数
 		System.setProperty("TEST_JVM_VALUE", "testtesttest");
 		//可获取JVM参数（优先获取动态设置的，再获取手动配置的）
 		System.out.println(System.getProperty("TEST_JVM_VALUE"));
 		//可获取系统环境变量
 		System.out.println(System.getenv("path"));
-*/
+		 */
+		//通过-Dspring.profiles.active=xxx动态激活指定环境的配置文件application-xxx.properties
 		SpringApplication.run(LokApplication.class, args);
 	}
 }

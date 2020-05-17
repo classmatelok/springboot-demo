@@ -2,11 +2,13 @@ package com.lok.common.controller;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lok.common.service.imp.TestServiceImp;
 import com.lok.common.domain.JsonDemo;
-import com.lok.common.service.CommonService;
 import com.lok.common.utils.CookieTools;
 import com.lok.common.utils.JedisPoolTools;
+import com.lok.strategy.StrategyServiceImp;
 
 import redis.clients.jedis.Jedis;
 
@@ -33,9 +35,26 @@ public class TestController {
 	@Autowired
 	private TestServiceImp testService;
 	@Autowired
-	private CommonService commonService;
+	private StrategyServiceImp strategyServiceImp;
 	@Resource
 	private List<JsonDemo> students;
+	
+	/**
+	 * profile激活测试、@PostConstruct测试
+	 * 另：1.如构造器注入遇到循环依赖问题可改成@Autowired字段注入，因字段注入时只是简单构造而暂未初始化;
+	 * 	  2.若A注入B时就需要该B中的C等，则B中可构造器注入C
+	 */
+	//通过-Dspring.profiles.active=xxx激活指定环境的配置文件
+	@Value(value = "${test.profile.value}")
+	private String testPropertiesValue;
+	@PostConstruct//标注后类加载完毕后就会执行此方法，而下面构造方法会在本方法之前执行
+	private void initClass() {
+		System.out.println("测试激活的profile，test.profile.value=" + testPropertiesValue);
+	}
+	private TestController() {
+		System.out.println("TestController无参构造方法执行了");
+	}
+	
 	
 	@GetMapping("/json")
 	public List<JsonDemo> testGetJsonFileContent() {
@@ -93,7 +112,7 @@ public class TestController {
 	 */
 	@GetMapping("/teach/{courseType:\\w+}")//路径参数courseType需满足该正则表达式
 	public String teachByCourseType(@PathVariable("courseType") String courseType) {
-		return this.commonService.teachByCourseType(courseType);
+		return this.strategyServiceImp.teachByCourseType(courseType);
 	}
 	
 	/**

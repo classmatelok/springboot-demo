@@ -3,9 +3,9 @@ package com.lok.strategy;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SportCourseImp implements Course {
+public class MathCourse implements Course {
 
-	private static final String CROUSE_TYPE = "SPORT";
+	private static final String CROUSE_TYPE = "MATH";
 	
 	@Override
 	public String getCourseType() {
@@ -14,7 +14,7 @@ public class SportCourseImp implements Course {
 
 	@Override
 	public String teach() {
-		return "Teaching sport now!";
+		return "Teaching math now!";
 	}
 
 }
