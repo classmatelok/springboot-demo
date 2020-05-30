@@ -2,6 +2,10 @@ package com.lok.common.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,6 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TimeZone;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -21,7 +26,19 @@ import java.util.stream.Collectors;
 public class OtherUtils {
 	public static void main(String[] args) {
 		
-		getRepeat();
+		//utc转用户时区
+		TimeZone gmt = TimeZone.getTimeZone("Asia/Shanghai");
+		System.out.println(gmt);
+		ZoneId zoneId = ZoneId.of(gmt.getID());
+		ZonedDateTime zonedDateTime = ZonedDateTime.of(LocalDateTime.of(2020, 4, 26, 16, 52), zoneId);
+		System.out.println(zonedDateTime);
+		
+		//用户时间转utc
+		ZonedDateTime utcTime = ZonedDateTime.of(2020, 4, 26, 16, 52, 0, 0, ZoneId.of("UTC"));
+		System.out.println(utcTime.toLocalDateTime());
+		
+		
+//		getRepeat();
 //		loopArr();
 //		filterList();
 //		filterMap();
