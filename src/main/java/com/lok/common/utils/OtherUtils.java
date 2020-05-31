@@ -20,30 +20,18 @@ import java.util.TimeZone;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 public class OtherUtils {
 	public static void main(String[] args) {
 		
-		//utc转用户时区
-		TimeZone gmt = TimeZone.getTimeZone("Asia/Shanghai");
-		System.out.println(gmt);
-		ZoneId zoneId = ZoneId.of(gmt.getID());
-		ZonedDateTime zonedDateTime = ZonedDateTime.of(LocalDateTime.of(2020, 4, 26, 16, 52), zoneId);
-		System.out.println(zonedDateTime);
-		
-		//用户时间转utc
-		ZonedDateTime utcTime = ZonedDateTime.of(2020, 4, 26, 16, 52, 0, 0, ZoneId.of("UTC"));
-		System.out.println(utcTime.toLocalDateTime());
-		
-		
+		//找出集合中重复元素
 //		getRepeat();
-//		loopArr();
-//		filterList();
-//		filterMap();
 		
-//		System.out.println("431456196803022030".matches("([1-9]\\d{5}(18|19)\\d{2}(0[1-9]|1[0-2])\\d{5}[0-9Xx])|\\d{15}"));//身份证正则校验
+		//身份证正则校验
+//		matchIdCard("431456196803022030");
 		
 		//时间转毫秒数
 //		timeTurnMillion("2019-01-01 00:00:00");
@@ -53,12 +41,6 @@ public class OtherUtils {
 		
 		//打印A~Z and a~z
 //		getCode();
-		
-		//按“，”分割字符串
-//		splitStr("");
-		
-		//去“-”符号
-//		removeSymbol("78974515-6");
 		
 		//给list排序
 //		String[] arr = {"A","A-","A+","AA","AA-","AA+","AAA","B","B-",  "B+", "BB", "BB-", "BB+","BBB","BBB-","BBB+"};
@@ -78,6 +60,12 @@ public class OtherUtils {
 //		map.put("5", "e");
 //		getCurrentPageContent(2,3,map);
 		
+	}
+
+	/** 身份证正则校验 */
+	private static void matchIdCard(String idCardNum) {
+		Pattern pattern = Pattern.compile("([1-9]\\d{5}(18|19)\\d{2}(0[1-9]|1[0-2])\\d{5}[0-9Xx])|\\d{15}");//预解析正则
+		System.out.println(pattern.matcher(idCardNum).matches());
 	}
 
 	/** 找出重复元素 */
@@ -101,32 +89,6 @@ public class OtherUtils {
             }
         }
         System.out.println("重复的值：" + String.join(", ", result));
-	}
-	
-	/** 遍历每个元素 */
-	private static void loopArr() {
-		String[] arr = {"a","ab","abc","abcd","abcde"};
-		Arrays.stream(arr).forEach(x -> {System.out.println(x);});
-	}
-	
-	/** 遍历List并塞选符合条件的元素 */
-	private static void filterList() {
-		String[] arr = {"a","ab","abc","abcd","abcde"};
-		List<String> list = Arrays.asList(arr);
-		List<String> subList = list.stream().filter(x -> x.contains("bc")).collect(Collectors.toList());
-		System.out.println(subList);
-	}
-	
-	/** 遍历Map并塞选符合条件的键值 */
-	private static void filterMap() {
-		Map<String, String> map = new HashMap<>();
-		map.put("1", "test1");
-		map.put("2", "test2");
-		map.put("3", "test3");
-		map.put("4", "test4");
-		
-		Map<String, String> subMap = map.entrySet().stream().filter(e -> e.getKey().equals("1")).collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue()));
-		System.out.println(subMap);
 	}
 	
 	/** 日期转毫秒数 */
@@ -159,23 +121,6 @@ public class OtherUtils {
 		}
 	}
 	
-	/** 按“，”分割字符串 */
-	private static void splitStr(String str) {
-		for (String string : str.split(",")) {
-			System.out.println(string);
-		}
-	}
-	
-	/** 去“-”符号 */
-	private static void removeSymbol(String str) {
-		int index = str.lastIndexOf("-");
-		if (index!=-1) {
-			str = str.substring(0,index)
-					+str.substring(index+1);
-		}
-		System.out.println(str);
-	}
-	
 	/** 排序，如:{"A","A-","A+","AA","AA-","AA+","AAA","B","B-",  "B+", "BB", "BB-", "BB+","BBB","BBB-","BBB+"} */
 	private static void sortList(List<String> list ) {
 		Collections.sort(list,new Comparator<String>() {
@@ -200,6 +145,8 @@ public class OtherUtils {
 		});
 	}
 	
+	/** 获取list中当前页的子list(参1:pageSize，参2：pageNum)  */
+	
 	/** 获取list中当前页的子list(参1:pageSize，参2：pageNum) */
 	private static <T> void getCurrentPageContent(int pageSize, int pageNum, List<T> list) {
 		List<T> subList = null;
@@ -223,6 +170,8 @@ public class OtherUtils {
 		}
 		System.out.println(subList);
 	}
+	
+	/** 获取map中当前页的子map(参1:pageSize，参2：pageNum) */
 	
 	/** 获取map中当前页的子map(参1:pageSize，参2：pageNum) */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
