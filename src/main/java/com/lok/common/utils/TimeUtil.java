@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Period;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.TimeZone;
@@ -23,7 +22,8 @@ public class TimeUtil {
 
 	public static void main(String[] args) throws Exception {
 //		getAllTimezoneId();
-		System.out.println("To GMT time: "+ convertToGmtTime("Europe/London", "13:00:00"));//Europe/London
+		System.out.println("To GMT time: "+ convertToGmtTime("Europe/London", "13:00:00"));//Europe/London, Asia/Shanghai
+		System.out.println("To User time: "+ convertToUserTime("Europe/London", "13:00:00"));//Europe/London, Asia/Shanghai
 //		getDaysGap();
 //		getTimeGap();
 //		System.out.println(date.toString()); // 2020-01-27
@@ -32,7 +32,7 @@ public class TimeUtil {
 //		System.out.println(date.getDayOfMonth()); // 27
 //		System.out.println(date.getDayOfWeek()); // MONDAY
 //		System.out.println(getDate(2020, 1, 2)); // 2020-01-02
-//		System.out.println(getNow()); // 15:52:47.239
+		System.out.println(getTime(8, 30, 0)); // 15:52:47.239
 //		System.out.println(getFormat(getTodayTime(), "dd/MM/yyyy")); // 27/01/2020
 	}
 
@@ -43,25 +43,22 @@ public class TimeUtil {
 	}
 	
 	//日期
-	public static LocalDate getToday() {
-		LocalDate date = LocalDate.now();
-		return date;
-	}
-	
-	//指定日期
 	public static String getDate(int year, int month, int dayOfMonth) {
 		//方式一: 通过年月日构造
 		LocalDate date = LocalDate.of(year, month, dayOfMonth);
-		//方式二：直接通过字符串转换
+		//方式二：直接字符串解析
 		//LocalDate date2 = LocalDate.parse("2020-01-01");//默认用就是DateTimeFormatter.ISO_LOCAL_DATE
 		//LocalDate date2 = LocalDate.parse("20200101", DateTimeFormatter.BASIC_ISO_DATE);
 		return date.toString();
 	}
 	
 	//时间
-	public static LocalTime getNow() {
-		LocalTime now = LocalTime.now();
-		return now;
+	public static LocalTime getTime(int hour, int minute, int second) {
+		//方式一：通过时分秒构造
+		LocalTime time = LocalTime.of(hour, minute, second);
+		//方式二：直接字符串解析
+		//LocalTime time2 = LocalTime.parse("08:30:00", DateTimeFormatter.ISO_LOCAL_TIME);
+		return time;
 	}
 	
 	// 日期+时间
@@ -87,12 +84,13 @@ public class TimeUtil {
 	
 	//获取2日期相差(天数)例子
 	public static int getDaysGap() {
-		LocalDate date = getToday();
+		LocalDate date = LocalDate.now();
 		Period between = Period.between(date, date);
 		int days = between.getDays();
 		return days;
 	}
 
+	//获取标准时区列表
 	public static void getAllTimezoneId() {
 		String[] availableIDs = TimeZone.getAvailableIDs();
 		for (String string : availableIDs) {
@@ -100,18 +98,26 @@ public class TimeUtil {
 		}
 	}
 	
-	//根据timezoneId转成gmt时间(因服务器环境总会改变默认Timezone，故需TimeZone.setDefault方式指定时区)
-	public static String convertToGmtTime(String timezoneId, String userTime) throws ParseException {
-		TimeZone.setDefault(TimeZone.getTimeZone(timezoneId));
-		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-		Date userDate = dateFormat.parse(userTime);
-		TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
-		LocalDateTime userDateTime = LocalDateTime.ofInstant(userDate.toInstant(), ZoneId.of(TimeZone.getDefault().getID()));
-		TimeZone.setDefault(TimeZone.getTimeZone(timezoneId));
-		ZonedDateTime zonedDateTime = userDateTime.atZone(ZoneId.of(TimeZone.getDefault().getID()));
-		LocalDateTime gmtDateTime = zonedDateTime.toLocalDateTime();
-		return DateTimeFormatter.ofPattern("HH:mm:ss").format(gmtDateTime);//DateTimeFormatter.ISO_LOCAL_TIME
+	//根据timezoneId将指定时区时间转成gmt时间(因服务器环境总会改变默认Timezone，故需TimeZone.setDefault方式指定时区)
+	public static String convertToGmtTime(String fromTimezoneId, String userTime) throws ParseException {
+		return convertTimeByTimezone(fromTimezoneId, "GMT", userTime);
 	}
 	
+	//根据timezoneId将gmt时间转成指定时区时间(因服务器环境总会改变默认Timezone，故需TimeZone.setDefault方式指定时区)
+	public static String convertToUserTime(String toTimezoneId, String userTime) throws ParseException {
+		return convertTimeByTimezone("GMT", toTimezoneId, userTime);
+	}
+	
+	public static String convertTimeByTimezone(String fromTimezoneId, String toTimezoneId, String fromTime) throws ParseException {
+		TimeZone.setDefault(TimeZone.getTimeZone(fromTimezoneId));
+		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+		Date fromDate = dateFormat.parse(fromTime);
+		TimeZone.setDefault(TimeZone.getTimeZone(toTimezoneId));
+		LocalDateTime toDateTime = LocalDateTime.ofInstant(fromDate.toInstant(), ZoneId.of(TimeZone.getDefault().getID()));
+		//TimeZone.setDefault(TimeZone.getTimeZone(timezoneId));
+		//ZonedDateTime zonedDateTime = toDateTime.atZone(ZoneId.of(TimeZone.getDefault().getID()));
+		//LocalDateTime gmtDateTime = zonedDateTime.toLocalDateTime();
+		return DateTimeFormatter.ISO_LOCAL_TIME.format(toDateTime);//DateTimeFormatter.ISO_LOCAL_TIME格式为HH:mm:ss
+	}
 	
 }
